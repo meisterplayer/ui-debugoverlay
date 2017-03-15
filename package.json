@@ -1,0 +1,23 @@
+{
+  "name": "@npm-wearetriple/meister-plugin-debugoverlay",
+  "version": "1.0.0",
+  "description": "Debug overlay plugin for Meister",
+  "main": "dist/DebugOverlay.js",
+  "scripts": {},
+  "keywords": [
+    "meister",
+    "video",
+    "plugin"
+  ],
+  "author": "Triple",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@npm-wearetriple/gulp-webpack-tasks": "^1.0.0",
+    "@npm-wearetriple/js-dev": "^3.1.0",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "@npm-wearetriple/heartbeat": "^1.0.2",
+    "keyboard-shortcut": "^1.2.0"
+  }
+}
