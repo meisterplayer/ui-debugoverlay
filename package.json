@@ -1,6 +1,6 @@
 {
-  "name": "@npm-wearetriple/meister-plugin-debugoverlay",
-  "version": "1.0.0",
+  "name": "meister-plugin-debugoverlay",
+  "version": "5.0.0",
   "description": "Debug overlay plugin for Meister",
   "main": "dist/DebugOverlay.js",
   "scripts": {},
@@ -9,6 +9,10 @@
     "video",
     "plugin"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meisterplayer/ui-debugoverlay.git"
+  },
   "author": "Triple",
   "license": "Apache-2.0",
   "devDependencies": {
