@@ -7,9 +7,9 @@ module.exports =
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -88,86 +88,6 @@ exports.default = _DebugOverlay2.default;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var HeartBeat = function () {
-    function HeartBeat(beatsPerS) {
-        var debug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-        _classCallCheck(this, HeartBeat);
-
-        this.intervalTime = Number.isFinite(beatsPerS) ? beatsPerS * 1000 : 5000;
-        this.debug = debug;
-
-        this.shouldCallCallback = true;
-
-        this.lastBeat = 0;
-        this.intervalId = 0;
-    }
-
-    _createClass(HeartBeat, [{
-        key: 'beat',
-        value: function beat() {
-            var _this = this;
-
-            var onBeat = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
-
-            if (this.intervalId) {
-                if (this.debug) {
-                    console.log('Removing previous interval');
-                }
-                clearInterval(this.intervalId);
-            }
-
-            // Interval starts firing at the end of the interval, so previous beat would have been now
-            this.lastBeat = Date.now();
-
-            this.intervalId = setInterval(function () {
-                var now = Date.now();
-                var timeSinceLastBeat = now - _this.lastBeat;
-
-                _this.lastBeat = now;
-
-                if (_this.shouldCallCallback) {
-                    onBeat(timeSinceLastBeat);
-                }
-            }, this.intervalTime);
-        }
-    }, {
-        key: 'mute',
-        value: function mute() {
-            this.shouldCallCallback = false;
-        }
-    }, {
-        key: 'unmute',
-        value: function unmute() {
-            this.shouldCallCallback = true;
-        }
-    }, {
-        key: 'kill',
-        value: function kill() {
-            clearInterval(this.intervalId);
-        }
-    }]);
-
-    return HeartBeat;
-}();
-
-exports.default = HeartBeat;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -275,6 +195,86 @@ shortcut.press = function press(k, el) {
 	e.keyCode = e.which = code;
 	el.dispatchEvent(e);
 };
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var HeartBeat = function () {
+    function HeartBeat(beatsPerS) {
+        var debug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+        _classCallCheck(this, HeartBeat);
+
+        this.intervalTime = Number.isFinite(beatsPerS) ? beatsPerS * 1000 : 5000;
+        this.debug = debug;
+
+        this.shouldCallCallback = true;
+
+        this.lastBeat = 0;
+        this.intervalId = 0;
+    }
+
+    _createClass(HeartBeat, [{
+        key: 'beat',
+        value: function beat() {
+            var _this = this;
+
+            var onBeat = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
+
+            if (this.intervalId) {
+                if (this.debug) {
+                    console.log('Removing previous interval');
+                }
+                clearInterval(this.intervalId);
+            }
+
+            // Interval starts firing at the end of the interval, so previous beat would have been now
+            this.lastBeat = Date.now();
+
+            this.intervalId = setInterval(function () {
+                var now = Date.now();
+                var timeSinceLastBeat = now - _this.lastBeat;
+
+                _this.lastBeat = now;
+
+                if (_this.shouldCallCallback) {
+                    onBeat(timeSinceLastBeat);
+                }
+            }, this.intervalTime);
+        }
+    }, {
+        key: 'mute',
+        value: function mute() {
+            this.shouldCallCallback = false;
+        }
+    }, {
+        key: 'unmute',
+        value: function unmute() {
+            this.shouldCallCallback = true;
+        }
+    }, {
+        key: 'kill',
+        value: function kill() {
+            clearInterval(this.intervalId);
+        }
+    }]);
+
+    return HeartBeat;
+}();
+
+exports.default = HeartBeat;
 
 /***/ }),
 /* 3 */
@@ -500,7 +500,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _keyboardShortcut = __webpack_require__(2);
+var _keyboardShortcut = __webpack_require__(1);
 
 var _keyboardShortcut2 = _interopRequireDefault(_keyboardShortcut);
 
@@ -508,9 +508,9 @@ var _template = __webpack_require__(9);
 
 var _template2 = _interopRequireDefault(_template);
 
-var _heartbeat = __webpack_require__(1);
+var _meisterHeartbeat = __webpack_require__(2);
 
-var _heartbeat2 = _interopRequireDefault(_heartbeat);
+var _meisterHeartbeat2 = _interopRequireDefault(_meisterHeartbeat);
 
 var _LineChart = __webpack_require__(6);
 
@@ -559,7 +559,7 @@ var DebugOverlay = function (_Meister$UiPlugin) {
         _this.averageBandwidth = 0;
         _this.qualitysEls = [];
 
-        _this.hearbeat = new _heartbeat2.default(0.1);
+        _this.hearbeat = new _meisterHeartbeat2.default(0.1);
         _this.hearbeat.beat(_this.onBeat.bind(_this));
         _this.hearbeat.mute();
 
@@ -746,7 +746,7 @@ var DebugOverlay = function (_Meister$UiPlugin) {
             var letters = '0123456789ABCDEF';
             var color = '#';
 
-            for (var i = 0; i < 6; i++) {
+            for (var i = 0; i < 6; i += 1) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
 
@@ -763,11 +763,17 @@ var DebugOverlay = function (_Meister$UiPlugin) {
 
             this.setElements();
         }
+    }], [{
+        key: 'pluginName',
+        get: function get() {
+            return 'DebugOverlay';
+        }
     }]);
 
     return DebugOverlay;
 }(Meister.UiPlugin);
 
+Meister.registerPlugin(DebugOverlay.pluginName, DebugOverlay);
 Meister.registerPlugin('debugOverlay', DebugOverlay);
 
 exports.default = DebugOverlay;

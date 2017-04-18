@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const tripleGulp = require('@npm-wearetriple/js-dev').gulp;
-const webpackTask = require('@npm-wearetriple/gulp-webpack-tasks');
+const tripleGulp = require('meister-js-dev').gulp;
+const webpackTask = require('meister-gulp-webpack-tasks');
 
 // Building tasks.
 const MODULE_NAME = 'DebugOverlay';

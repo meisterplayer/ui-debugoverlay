@@ -1,6 +1,6 @@
 import Shortcut from 'keyboard-shortcut';
 import template from './template.build';
-import HeartBeat from '@npm-wearetriple/heartbeat';
+import HeartBeat from 'meister-heartbeat';
 import LineChart from './LineChart';
 import Hijax from './lib/Hijax';
 import HijackAjax from './HijackAjax';
@@ -36,6 +36,10 @@ class DebugOverlay extends Meister.UiPlugin {
         this.hijackAjax = new HijackAjax();
 
         // this.hijackRequest();
+    }
+
+    static get pluginName() {
+        return 'DebugOverlay';
     }
 
     onBeat() {
@@ -160,6 +164,7 @@ class DebugOverlay extends Meister.UiPlugin {
     }
 }
 
+Meister.registerPlugin(DebugOverlay.pluginName, DebugOverlay);
 Meister.registerPlugin('debugOverlay', DebugOverlay);
 
 export default DebugOverlay;
