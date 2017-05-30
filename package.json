@@ -1,6 +1,6 @@
 {
   "name": "@meisterplayer/plugin-debugoverlay",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "Debug overlay plugin for Meister",
   "main": "dist/DebugOverlay.js",
   "scripts": {},

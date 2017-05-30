@@ -774,7 +774,6 @@ var DebugOverlay = function (_Meister$UiPlugin) {
 }(Meister.UiPlugin);
 
 Meister.registerPlugin(DebugOverlay.pluginName, DebugOverlay);
-Meister.registerPlugin('debugOverlay', DebugOverlay);
 
 exports.default = DebugOverlay;
 
