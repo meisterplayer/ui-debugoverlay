@@ -165,6 +165,5 @@ class DebugOverlay extends Meister.UiPlugin {
 }
 
 Meister.registerPlugin(DebugOverlay.pluginName, DebugOverlay);
-Meister.registerPlugin('debugOverlay', DebugOverlay);
 
 export default DebugOverlay;
