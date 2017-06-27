@@ -4,6 +4,7 @@ import HeartBeat from 'meister-heartbeat';
 import LineChart from './LineChart';
 import Hijax from './lib/Hijax';
 import HijackAjax from './HijackAjax';
+import packageJson from '../../package.json';
 
 class DebugOverlay extends Meister.UiPlugin {
     constructor(config, meister) {
@@ -40,6 +41,10 @@ class DebugOverlay extends Meister.UiPlugin {
 
     static get pluginName() {
         return 'DebugOverlay';
+    }
+
+    static get pluginVersion() {
+        return packageJson.version;
     }
 
     onBeat() {
